@@ -1,15 +1,38 @@
-<!doctype html>
+<!--NOTE: Here is the source to the article used as an example: https://contentmarketinginstitute.com/2018/06/design-tips-nondesigners/
+          Here is the source to the banner image: https://www.pexels.com/photo/notebook-beside-the-iphone-on-table-196644/-->
+
+<!DOCTYPE html>
 <html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
     <title>My Vue Project</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
   </head>
+
   <body>
-    <div id="app">
-      {{ message }}
-      <button v-on:click="counter++">Get that Bread!</button>
-      <p>You make this much: {{ counter }}</p>
+    <div class="app-window" id="app">
+      <div class="article">
+        <img class="article-banner" :src="articleBanner">
+
+        <h1 class="article-title">{{ articleTitle }}</h1>
+        <h3 class="article-author">by <a class="article-author-about" :href="articleAuthorAbout" target="_blank">{{ articleAuthor }}</a></h3>
+        <p class="article-date">published {{ articleDate }}</p>
+
+        <p class="article-content" v-html="articleContent">{{ articleContent }}</p>
+
+        <button class="article-like article-like-on" v-if="articleLiked" v-on:click="articleLikedEvent"></button>
+        <button class="article-like article-like-off" v-else v-on:click="articleLikedEvent"></button>
+
+        <br>
+
+        <a class="article-source" :href="articleSource" target="_blank">Go to article source</a>
+        <a class="article-source" v-if="articleLiked" href="http://devhumor.com/content/uploads/images/July2018/javascript_underwater.jpg" target="_blank">Go to meme source</a>
+        <div class="article-footer"></div>
+      </div>
+
+
     </div>
     <script src="dist/main.js" type="text/javascript"></script>
   </body>

@@ -1,0 +1,83 @@
+body {
+  margin: 0;
+  padding: 10px;
+  font-family: "helvetica","arial",sans-serif;
+  background-color: rgb( 240,240,240 );
+}
+
+.app-window {
+  text-align: center;
+  padding: 0;
+}
+
+.article {
+  display: inline-block;
+  max-width: 800px;
+  min-width: 100px;
+  padding: 4px;
+  background-color: white;
+}
+
+.article-banner {
+  object-fit: contain;
+  width: 100%;
+  height: 400px;
+}
+
+.article-title {
+  color: maroon;
+}
+
+.article-author {
+  color: rgb( 200,200,200 );
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.article-date {
+  margin-bottom: 40px;
+  color: rgb( 200,200,200 );
+  font-style: italic;
+  margin-top: 0;
+}
+
+.article-subheader {
+  margin-top: 40px;
+  margin-bottom: 10px;
+  color: maroon;
+}
+
+.article-example {
+  object-fit: contain;
+  width: 100%;
+  height: 300px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.article-like {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 40px;
+  background-size: 100% 100%;
+  background-color: white;
+}
+
+.article-like-on {
+  background-image: url( 'assets/likeButtonOn.png' );
+}
+
+.article-like-off {
+  background-image: url( 'assets/likeButtonOff.png' );
+}
+
+.article-source {
+  margin-bottom: 40px;
+}
+
+.article-footer {
+  width: 100%;
+  height: 100px;
+  background-image: url( 'assets/footer1.jpg' );
+  background-size: cover;
+}
