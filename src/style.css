@@ -237,7 +237,7 @@ footer nav ul li a:hover {
 }
 
 .horizontal-list li {
-  display: inline;
+  display: inline-block;
   margin-left: 0;
   margin-right: 10px;
 }
@@ -262,4 +262,17 @@ footer nav ul li a:hover {
   flex-wrap: wrap;
   align-items: center;
   vertical-align: middle;
+}
+
+
+@keyframes animbow {
+  0% { transform: rotate( 0deg ) scale( 1 ); }
+  100% { transform: rotate( 45deg ) scale( 1.5 ); }
+}
+
+.anim-bow:hover {
+  animation-name: animbow;
+  animation-duration: 0.25s;
+  animation-direction: alternate;
+  animation-iteration-count: 2;
 }
