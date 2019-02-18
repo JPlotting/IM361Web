@@ -5,62 +5,66 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
     <title>IM 361 Web App</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
   </head>
 
   <body>
     <!-- NOTE: I don't have a desktop version of my screen so I made the markup
          below to represent a desktop version. I hope this is okay -->
 
-    <header>
-      <h1>Title-Logo</h1>
+    <header class="center-x center-y clearfix">
+      <!--<h1 class="horizontal-item"><a href="index">All News</a></h1>-->
+      <a class="logo horizontal-item" href="index.html"><img src="assets/logo.png" alt="All News logo"></a>
 
-      <nav>
-        <ul>
-          <li><a>Feed</a></li>
-          <li><a>Discover</a></li>
-          <li><a>Posts</a></li>
-          <li><a>Connections</a></li>
+      <nav class="horizontal-item">
+        <ul class="horizontal-list">
+          <li class="nav-linkA"><a class="global-highlightA nav-link" href="index.html">Feed</a></li>
+          <li class="nav-linkB"><a class="global-highlightB nav-link" href="index.html">Discover</a></li>
+          <li class="nav-linkC"><a class="global-highlightC nav-link" href="index.html">Posts</a></li>
+          <li class="nav-linkD"><a class="global-highlightD nav-link" href="index.html">Connections</a></li>
         </ul>
       </nav>
 
-      <ul>
-        <li><button>Notifications</button></li>
-        <li><a><img class="thumb-user"></a></li>
+      <ul class="user-bar horizontal-item horizontal-list">
+        <li><a href="index.html"><img class="icon-notes" src="assets/notification.png" alt="Notifications"></a></li>
+        <li><a href="index.html"><img class="user-pic" src="assets/userpic.png" alt="My account"></a></li>
       </ul>
     </header>
 
-    <main>
-      <article>
-        <img>
+    <main class="center-x">
+      <article class="full-width">
+        <div class="article-image"></div>
+        <div class="gradient-divider full-width"></div>
 
-        <h2>Title</h2>
-        <p><em>by</em> <a>Author name</a></p>
-        <p><em>Date published</em></p>
+        <h2 class="global-titletext">3 Graphic Design Tips for Non-Designers</h2>
+        <p class="global-othertext caption-text"><em>by</em> <a href="index.html">Midori Nediger</a></p>
+        <p class="global-othertext caption-text"><em>Published October 12, 2018</em></p>
         <br>
 
-        <p>Actual content</p>
+        <p class="global-defaulttext text-block">Given the power of visual content (it’s more memorable and more engaging than text-based content), many marketers have turned to DIY graphic design software or contracted with graphic artists. With more traditionally text-focused people entering the world of visuals, it’s time for a brief refresher on the essential principles of design. It’s time for a reminder that the strategic use of typography, color, and white space can drastically improve the efficacy and aesthetics of visual content. These three design tips will keep your blog, social media, and other visuals on the right track.</p>
         <br>
-        <h3>Subheader</h3>
-        <p>More content</p>
+        <h3 class="global-titletext">White space 101: Remove to Improve</h3>
+        <p class="global-defaulttext text-block">A telltale sign of an amateur designer is a shortage (or misuse) of white space. If you’re unfamiliar with the term, white or negative space refers to the unmarked spaces around or between visual elements in a design. Apple’s use of white space for its HomePod page is extreme, but effective. The stark emptiness of the designs force viewers to focus on the product, which is often a work of art. In contrast, non-designers often itch to fill every inch of space with text, images, or other design elements, leaving no place for the eye to rest.</p>
 
         <!-- etc... -->
       </article>
 
-      <ul>
-        <li><button>Like</button></li>
-        <li><button>Share</button></li>
+      <ul class="horizontal-list full-width">
+        <li><a href="index.html"><img class="icon-like" src="assets/like.png" alt="Like this article"></a></li>
+        <li><a href="index.html"><img class="icon-share" src="assets/share.png" alt="Share this article"></a></li>
       </ul>
 
-      <div>
-        <a><img class="thumb-author"></a>
-        <h4>Author name</h4>
-        <p>About text of author</p>
-        <button>More from this author</button>
+      <div class="author-box full-width center-x center-y">
+        <a class="author-pic" href="index.html"><img class="user-pic" src="assets/authorpic.png" alt="Account of the author"></a>
+
+        <div>
+          <h4 class="global-inverted">Midori Nediger</h4>
+          <p class="global-inverted">Midori spreads visual communication tricks and tips as design evangelist at Venngage, a web-based infographic design tool.</p>
+          <a class="global-inverted" href="index.html">More from this author ¬</a>
+        </div>
       </div>
 
-      <div>
-        <p># Comments</p>
+      <div class="comments-box full-width">
+        <p class="global-othertext">2 Comments</p>
 
         <form>
           Text: <input type="text" name="Text">
@@ -68,15 +72,12 @@
         </form>
 
         <article>
-          <div>
-            <a><img class="thumb-commentor"></a>
-            <h4>Commentor name</h4>
-            <p>Comment text</p>
-
-            <ul>
-              <li><button>Like</button></li>
-              <li><button>Reply</button></li>
-            </ul>
+          <div class="comment-box full-width center-x center-y">
+            <a href="index.html"><img class="user-pic" src="assets/userpic.png" alt="Profile of Jakob Plotts"></a>
+            <h4 class="global-titletext">Jakob Plotts</h4>
+            <p class="global-defaulttext">What a super helpful article! I would love to read to more!</p>
+            <p class="global-titletext">2 Likes</p>
+            <a href="index.html"><img class="icon-comment-like" src="assets/like.png" alt="Like this comment by Jakob Plotts"></a>
           </div>
 
           <!-- etc... -->
@@ -86,14 +87,14 @@
       </div>
     </main>
 
-    <footer>
-      <p>Brief description of the service. Copyright for <span>service owner</span></p>
+    <footer class="full-width center-x center-y">
+      <p class="global-othertext">The app that lets you take control of the content you want to see whilst exploring the unknown. We provide the tools to find new perspectives, avoid falsehoods, and pop social bubbles. It all starts here.<br><br><em>Copyright ©2019 All News. All rights resereved.</em></p>
 
       <nav>
-        <ul>
-          <li><a>Home</a></li>
-          <li><a>About</a></li>
-          <li><a>Legal</a></li>
+        <ul class="horizontal-list">
+          <li><a class="global-inverted" href="index.html">Home</a></li>
+          <li><a class="global-inverted" href="index.html">About</a></li>
+          <li><a class="global-inverted" href="index.html">Legal</a></li>
         </ul>
       </nav>
     </footer>
