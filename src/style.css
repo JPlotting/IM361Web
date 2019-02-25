@@ -68,7 +68,7 @@ main {
   height: auto;
   display: block;
   text-align: center;
-  background-image: linear-gradient( to bottom, #EF5454, #EF5454, #eeeeee, white, white, white, white );
+  background-color: white;
   padding-bottom: 20px;
 }
 
@@ -205,6 +205,18 @@ main .comments-box .icon-comment-like {
   height: auto;
 }
 
+main .comments-box .comment-input {
+  width: 40em;
+  height: auto;
+}
+
+main .comments-box .comment-text {
+  width: auto;
+  max-width: 40em;
+  height: auto;
+  word-wrap: break-word;
+}
+
 
 /* Author page stuff */
 .page-author .author-pic {
@@ -248,6 +260,11 @@ footer nav ul li a {
 
 footer nav ul li a:hover {
   text-shadow: 0 0 4px white;
+}
+
+.article-thumbnail {
+  max-width: 600px;
+  height: auto;
 }
 
 
@@ -308,9 +325,16 @@ footer nav ul li a:hover {
 
 
 /* Animation stuff */
+@keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fadein {}
+
 @keyframes animbow {
-  0% { transform: rotate( 0deg ) scale( 1 ); }
-  100% { transform: rotate( 45deg ) scale( 1.5 ); }
+  from { transform: rotate( 0deg ) scale( 1 ); }
+  to { transform: rotate( 45deg ) scale( 1.5 ); }
 }
 
 .anim-bow:hover {

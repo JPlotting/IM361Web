@@ -15,7 +15,7 @@
     <div id="app" class="app-div">
       <header class="center-x center-y clearfix">
         <!--<h1 class="horizontal-item"><a href="index">All News</a></h1>-->
-        <a class="logo horizontal-item" href="#home" v-on:click="pageName = 'article'"><img class="anim-bow" src="assets/logo.png" alt="All News logo"></a>
+        <a class="logo horizontal-item" href="#home" v-on:click="goToAPage( 'browse' )"><img class="anim-bow" src="assets/logo.png" alt="All News logo"></a>
 
         <nav class="horizontal-item">
           <ul class="horizontal-list">
@@ -32,14 +32,27 @@
         </ul>
       </header>
 
+     <!-- NOTE: Article browsing page -->
+      <main v-if="pageName === 'browse'" class="page-browse center-x">
+        <ul class="array-list">
+          <li v-for="result in articles">
+            <a href="#article" v-on:click="setArticle( result )">
+              <img class="article-thumbnail" :src="result.image" alt="">
+              <h2>{{ result.title }}</h2>
+              <h3>By {{ result.author }}</h3>
+            </a>
+          </li>
+        </ul>
+      </main>
+
      <!-- NOTE: Example article page -->
-      <main v-if="pageName === 'article'" class="page-article center-x">
+      <main v-else-if="pageName === 'article'" class="page-article center-x">
         <article class="full-width">
           <div class="article-image"></div>
           <div class="gradient-divider full-width"></div>
 
           <h2 class="global-titletext">{{ article.title }}</h2>
-          <p class="global-othertext caption-text"><em>by</em> <a href="#author" v-on:click="pageName = 'author'">{{ article.author }}</a></p>
+          <p class="global-othertext caption-text"><em>by</em> <a href="#author" v-on:click="goToAPage( 'author' )">{{ article.author }}</a></p>
           <p class="global-othertext caption-text"><em>Published {{ article.date }}</em></p>
           <br>
 
@@ -59,12 +72,12 @@
         </ul>
 
         <div class="author-box full-width center-x center-y">
-          <a class="author-pic" href="#author" v-on:click="pageName = 'author'"><img class="user-pic" src="assets/authorpic.png" alt="Account of the author"></a>
+          <a class="author-pic" href="#author" v-on:click="goToAPage( 'author' )"><img class="user-pic" src="assets/authorpic.png" alt="Account of the author"></a>
 
           <div>
             <h4 class="global-inverted">{{ article.author }}</h4>
             <p class="global-inverted">Midori spreads visual communication tricks and tips as design evangelist at Venngage, a web-based infographic design tool.</p>
-            <a class="global-inverted" href="#author" v-on:click="pageName = 'author'">More from this author ¬</a>
+            <a class="global-inverted" href="#author" v-on:click="goToAPage( 'author' )">More from this author ¬</a>
           </div>
         </div>
 
@@ -72,7 +85,7 @@
           <p class="global-othertext">{{ comments.length }} Comments</p>
 
           <form>
-            Comment: <input type="text" name="Comment" v-model="commentText">
+            Comment: <input class="comment-input" type="text" name="Comment" maxlength="250" v-model="commentText">
             <button type="button" v-on:click="processComment">Submit</button>
           </form>
 
@@ -81,10 +94,10 @@
               <div class="comment-box full-width center-x center-y">
                 <a href="#commentor"><img class="user-pic" src="assets/userpic.png" alt="Profile of Jakob Plotts"></a>
                 <h4 class="global-titletext">{{ comment.userName }}</h4>
-                <p class="global-defaulttext">{{ comment.text }}</p>
+                <p class="global-defaulttext comment-text">{{ comment.text }}</p>
                 <p class="global-titletext">{{ comment.likes }} Likes</p>
-                <a v-bind:hidden="comment.isLiked == true" href="#likeComment" v-on:click="likify( comment )"><img class="icon-comment-like anim-bow" src="assets/like.png" alt="Like this comment by {{ comment.userName }}"></a>
-                <a v-bind:hidden="comment.isLiked == false" href="#likeComment" v-on:click="unlikify( comment )"><img class="icon-comment-like anim-bow" src="assets/liked.png" alt="Undo your like for this comment by {{ comment.userName }}"></a>
+                <a v-bind:hidden="comment.isLiked == true" href="#likeComment" v-on:click="likify( comment )"><img class="icon-comment-like anim-bow" src="assets/like.png" alt="Like this comment"></a>
+                <a v-bind:hidden="comment.isLiked == false" href="#likeComment" v-on:click="unlikify( comment )"><img class="icon-comment-like anim-bow" src="assets/liked.png" alt="Undo your like for this comment"></a>
               </div>
             </li>
           </ul>
@@ -115,7 +128,7 @@
 
         <nav>
           <ul class="horizontal-list">
-            <li><a class="global-inverted" href="#home" v-on:click="pageName = 'article'">Home</a></li>
+            <li><a class="global-inverted" href="#home" v-on:click="goToAPage( 'browse' )">Home</a></li>
             <li><a class="global-inverted" href="#about">About</a></li>
             <li><a class="global-inverted" href="#legal">Legal</a></li>
           </ul>
