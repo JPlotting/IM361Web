@@ -62,6 +62,45 @@ header .user-pic {
 }
 
 
+/* Browse articles page stuff */
+main .basic-grid {
+  display: grid;
+  grid-template-columns: repeat( 3, auto );
+  grid-auto-rows: 300px;
+  justify-items: center;
+  align-items: center;
+}
+
+main .browse-container {
+  position: relative;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+main .browse-container img {
+  max-width: 100%;
+  height: auto;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate( -50%, -50% );
+}
+
+main .browse-container h2 {
+  position: absolute;
+  left: 10px;
+  bottom: 36px;
+}
+
+main .browse-container h3 {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+}
+
+
 /* Article page stuff */
 main {
   width: 100vw;
@@ -69,7 +108,6 @@ main {
   display: block;
   text-align: center;
   background-color: white;
-  padding-bottom: 20px;
 }
 
 main .article-image {
@@ -77,7 +115,6 @@ main .article-image {
   overflow: hidden;
   max-width: 100%;
   height: 700px;
-  background-image: url( "https://images.pexels.com/photos/1455985/pexels-photo-1455985.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" );
   background-size: cover;
   background-position: center;
   border-top: 4px solid #111111;
@@ -260,11 +297,6 @@ footer nav ul li a {
 
 footer nav ul li a:hover {
   text-shadow: 0 0 4px white;
-}
-
-.article-thumbnail {
-  max-width: 600px;
-  height: auto;
 }
 
 

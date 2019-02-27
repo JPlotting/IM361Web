@@ -34,21 +34,19 @@
 
      <!-- NOTE: Article browsing page -->
       <main v-if="pageName === 'browse'" class="page-browse center-x">
-        <ul class="array-list">
-          <li v-for="result in articles">
-            <a href="#article" v-on:click="setArticle( result )">
-              <img class="article-thumbnail" :src="result.image" alt="">
-              <h2>{{ result.title }}</h2>
-              <h3>By {{ result.author }}</h3>
-            </a>
-          </li>
-        </ul>
+        <div class="basic-grid">
+          <div class="browse-container" v-for="result in articles">
+            <a href="#article" v-on:click="setArticle( result )"><img class="center-y" :src="result.image" alt=""></a>
+            <h2 class="global-inverted">{{ result.title }}</h2>
+            <h3 class="global-inverted">By {{ result.author }}</h3>
+          </div>
+        </div>
       </main>
 
      <!-- NOTE: Example article page -->
       <main v-else-if="pageName === 'article'" class="page-article center-x">
         <article class="full-width">
-          <div class="article-image"></div>
+          <div class="article-image" :style="{backgroundImage: 'url(' + article.image + ')'}"></div>
           <div class="gradient-divider full-width"></div>
 
           <h2 class="global-titletext">{{ article.title }}</h2>

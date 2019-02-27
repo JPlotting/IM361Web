@@ -17,7 +17,8 @@ var app = new Vue({
       isLiked: false
     },
 
-    articles: [ {
+    articles: [
+      {
         image: 'https://images.pexels.com/photos/1455985/pexels-photo-1455985.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
         title: '3 Graphic Design Tips for Non-Designers',
         author: 'Midori Nediger',
@@ -31,7 +32,36 @@ var app = new Vue({
         date: 'some other date',
         likes: 0,
         isLiked: false
-    } ],
+      }, {
+        image: 'https://images.pexels.com/photos/1916824/pexels-photo-1916824.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        title: 'some other title',
+        author: 'some other author',
+        date: 'some other date',
+        likes: 0,
+        isLiked: false
+      }, {
+        image: 'https://images.pexels.com/photos/1659437/pexels-photo-1659437.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        title: 'some other title',
+        author: 'some other author',
+        date: 'some other date',
+        likes: 0,
+        isLiked: false
+      }, {
+        image: 'https://images.pexels.com/photos/219014/pexels-photo-219014.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        title: 'some other title',
+        author: 'some other author',
+        date: 'some other date',
+        likes: 0,
+        isLiked: false
+      }, {
+        image: 'https://images.pexels.com/photos/598966/pexels-photo-598966.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        title: 'some other title',
+        author: 'some other author',
+        date: 'some other date',
+        likes: 0,
+        isLiked: false
+      }
+    ],
 
     commentText: '',
     comments: []
