@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
+   <!-- site title and favicon! -->
     <title>All News – Pop Your Social Bubble</title>
     <link rel="shortcut icon" type="image/png" href="assets/favicon.png"/>
   </head>
@@ -12,90 +13,104 @@
     <!-- NOTE: I don't have a desktop version of my screen so I made the markup
          below to represent a desktop version. I hope this is okay -->
 
+   <!-- and the VUE begins -->
     <div id="app" class="app-div">
+     <!-- header containing logo, navbar, and user control bar -->
       <header class="center-x center-y clearfix">
+       <!-- animated logo -->
         <!--<h1 class="horizontal-item"><a href="index">All News</a></h1>-->
         <a class="logo horizontal-item" href="#home" v-on:click="goToAPage( 'browse' )"><img class="anim-bow" src="assets/logo.png" alt="All News logo"></a>
 
+       <!-- main navigation bar with tabs -->
         <nav class="horizontal-item">
           <ul class="horizontal-list">
-            <li class="nav-linkA"><a class="global-highlightA nav-link" href="#feed">Feed</a></li>
-            <li class="nav-linkB"><a class="global-highlightB nav-link" href="#discover">Discover</a></li>
-            <li class="nav-linkC"><a class="global-highlightC nav-link" href="#posts">Posts</a></li>
-            <li class="nav-linkD"><a class="global-highlightD nav-link" href="#connections">Connections</a></li>
+            <li class="nav-linkA"><a class="global-highlightA nav-link" href="#feed" v-on:click="goToAPage( 'browse' )">Feed</a></li>
+            <li class="nav-linkB"><a class="global-highlightB nav-link" href="#discover" v-on:click="goToAPage( 'browse' )">Discover</a></li>
+            <li class="nav-linkC"><a class="global-highlightC nav-link" href="#posts" v-on:click="goToAPage( 'browse' )">Posts</a></li>
+            <li class="nav-linkD"><a class="global-highlightD nav-link" href="#connections" v-on:click="goToAPage( 'browse' )">Connections</a></li>
           </ul>
         </nav>
 
+       <!-- user navigation bar containing account specific button like notifications and account settings -->
         <ul class="user-bar horizontal-item horizontal-list">
-          <li><a href="#notes"><img class="icon-notes anim-bow" src="assets/notification.png" alt="Notifications"></a></li>
-          <li><a href="#account"><img class="user-pic" src="assets/userpic.png" alt="My account"></a></li>
+          <li><a href="#notes" v-on:click="goToAPage( 'browse' )"><img class="icon-notes anim-bow" src="assets/notification.png" alt="Notifications"></a></li>
+          <li><a href="#account" v-on:click="goToAPage( 'browse' )"><img class="user-pic" src="assets/userpic.png" alt="My account"></a></li>
         </ul>
       </header>
+     <!-- /////////////////////////// -->
 
-     <!-- NOTE: Article browsing page -->
+     <!-- NOTE: article browsing page -->
       <main v-if="pageName === 'browse'" class="page-browse center-x">
         <div class="basic-grid">
-          <div class="browse-container" v-for="result in articles">
-            <a href="#article" v-on:click="setArticle( result )"><img class="center-y" :src="result.image" alt=""></a>
+         <!-- basic gallery style grid from arbitrarily sized articles array in VUE data (somewhat responsive) -->
+          <div class="browse-container appear-on-hover" v-for="result in articles">
+            <a class="stay-visible" href="#article" v-on:click="setArticle( result )"><img class="center-y stay-visible darken-on-hover" :src="result.image" alt=""></a>
             <h2 class="global-inverted">{{ result.title }}</h2>
-            <h3 class="global-inverted">By {{ result.author }}</h3>
+            <h3 class="global-inverted">By {{ authors[result.author].name }}</h3>
           </div>
         </div>
       </main>
+     <!-- /////////////////////////// -->
 
-     <!-- NOTE: Example article page -->
+     <!-- NOTE: selected article page -->
       <main v-else-if="pageName === 'article'" class="page-article center-x">
+       <!-- The bulk of the content on the page (banner image, title, author info, and article itself) -->
         <article class="full-width">
+         <!-- main defining image of the article (banner image) -->
           <div class="article-image" :style="{backgroundImage: 'url(' + article.image + ')'}"></div>
           <div class="gradient-divider full-width"></div>
 
+         <!-- the article content itself -->
           <h2 class="global-titletext">{{ article.title }}</h2>
-          <p class="global-othertext caption-text"><em>by</em> <a href="#author" v-on:click="goToAPage( 'author' )">{{ article.author }}</a></p>
+          <p class="global-othertext caption-text"><em>by</em> <a href="#author" v-on:click="goToAPage( 'author' )">{{ authors[article.author].name }}</a></p>
           <p class="global-othertext caption-text"><em>Published {{ article.date }}</em></p>
-          <br>
-
-          <p class="global-defaulttext text-block">Given the power of visual content (it’s more memorable and more engaging than text-based content), many marketers have turned to DIY graphic design software or contracted with graphic artists. With more traditionally text-focused people entering the world of visuals, it’s time for a brief refresher on the essential principles of design. It’s time for a reminder that the strategic use of typography, color, and white space can drastically improve the efficacy and aesthetics of visual content. These three design tips will keep your blog, social media, and other visuals on the right track.</p>
-          <br>
-          <h3 class="global-titletext">White space 101: Remove to Improve</h3>
-          <p class="global-defaulttext text-block">A telltale sign of an amateur designer is a shortage (or misuse) of white space. If you’re unfamiliar with the term, white or negative space refers to the unmarked spaces around or between visual elements in a design. Apple’s use of white space for its HomePod page is extreme, but effective. The stark emptiness of the designs force viewers to focus on the product, which is often a work of art. In contrast, non-designers often itch to fill every inch of space with text, images, or other design elements, leaving no place for the eye to rest.</p>
+          <br><p class="global-defaulttext text-block" v-html="article.content">
+            {{ article.content }}
+          </p>
         </article>
 
+       <!-- actions for article (like, share etc) -->
         <p class="global-othertext">{{ article.likes }} Likes</p>
         <ul class="horizontal-list full-width">
           <li>
-            <a v-bind:hidden="article.isLiked == true" href="#like" v-on:click="likify( article )"><img class="icon-like anim-bow" src="assets/like.png" alt="Like this article"></a>
-            <a v-bind:hidden="article.isLiked == false" href="#like" v-on:click="unlikify( article )"><img class="icon-like anim-bow" src="assets/liked.png" alt="Undo your like for this article"></a>
+            <a v-bind:hidden="article.isLiked == true" href="#like" v-on:click="likeArticle( article )"><img class="icon-like anim-bow" src="assets/like.png" alt="Like this article"></a>
+            <a v-bind:hidden="article.isLiked == false" href="#like" v-on:click="unlikeArticle( article )"><img class="icon-like anim-bow" src="assets/liked.png" alt="Undo your like for this article"></a>
           </li>
           <li><a href="#share"><img class="icon-share anim-bow" src="assets/share.png" alt="Share this article"></a></li>
         </ul>
 
+       <!-- author box containing author name, info, and links to more -->
         <div class="author-box full-width center-x center-y">
           <a class="author-pic" href="#author" v-on:click="goToAPage( 'author' )"><img class="user-pic" src="assets/authorpic.png" alt="Account of the author"></a>
 
           <div>
-            <h4 class="global-inverted">{{ article.author }}</h4>
-            <p class="global-inverted">Midori spreads visual communication tricks and tips as design evangelist at Venngage, a web-based infographic design tool.</p>
+            <h4 class="global-inverted">{{ authors[article.author].name }}</h4>
+            <p class="global-inverted">{{ authors[article.author].about }}</p>
             <a class="global-inverted" href="#author" v-on:click="goToAPage( 'author' )">More from this author ¬</a>
           </div>
         </div>
 
+       <!-- comments section -->
         <div class="comments-box full-width">
-          <p class="global-othertext">{{ comments.length }} Comments</p>
+         <!-- comment counter -->
+          <p class="global-othertext">{{ article.comments.length }} Comments</p>
 
+         <!-- comment input box -->
           <form>
             Comment: <input class="comment-input" type="text" name="Comment" maxlength="250" v-model="commentText">
             <button type="button" v-on:click="processComment">Submit</button>
           </form>
 
+         <!-- comment viewport filled in from VUE data -->
           <ul class="array-list">
-            <li v-for="comment in comments">
+            <li v-for="comment in article.comments">
               <div class="comment-box full-width center-x center-y">
                 <a href="#commentor"><img class="user-pic" src="assets/userpic.png" alt="Profile of Jakob Plotts"></a>
                 <h4 class="global-titletext">{{ comment.userName }}</h4>
                 <p class="global-defaulttext comment-text">{{ comment.text }}</p>
                 <p class="global-titletext">{{ comment.likes }} Likes</p>
-                <a v-bind:hidden="comment.isLiked == true" href="#likeComment" v-on:click="likify( comment )"><img class="icon-comment-like anim-bow" src="assets/like.png" alt="Like this comment"></a>
-                <a v-bind:hidden="comment.isLiked == false" href="#likeComment" v-on:click="unlikify( comment )"><img class="icon-comment-like anim-bow" src="assets/liked.png" alt="Undo your like for this comment"></a>
+                <a v-bind:hidden="comment.isLiked == true" href="#likeComment" v-on:click="likeComment( comment )"><img class="icon-comment-like anim-bow" src="assets/like.png" alt="Like this comment"></a>
+                <a v-bind:hidden="comment.isLiked == false" href="#likeComment" v-on:click="unlikeComment( comment )"><img class="icon-comment-like anim-bow" src="assets/liked.png" alt="Undo your like for this comment"></a>
               </div>
             </li>
           </ul>
@@ -103,7 +118,7 @@
       </main>
      <!-- //////////////////// -->
 
-     <!-- NOTE: Example author page -->
+     <!-- NOTE: selected author page -->
       <main v-else-if="pageName === 'author'" class="page-author center-x">
         <article class="full-width">
           <div class="article-image"></div>
@@ -121,17 +136,19 @@
       </main>
      <!-- /////////////////// -->
 
+     <!-- footer including short description of the site and navigation to other important pages -->
       <footer class="full-width center-x center-y">
         <p class="global-othertext">The app that lets you take control of the content you want to see whilst exploring the unknown. We provide the tools to find new perspectives, avoid falsehoods, and pop social bubbles. It all starts here.<br><br><em>Copyright ©2019 All News. All rights resereved.</em></p>
 
         <nav>
           <ul class="horizontal-list">
             <li><a class="global-inverted" href="#home" v-on:click="goToAPage( 'browse' )">Home</a></li>
-            <li><a class="global-inverted" href="#about">About</a></li>
-            <li><a class="global-inverted" href="#legal">Legal</a></li>
+            <li><a class="global-inverted" href="#about" v-on:click="goToAPage( 'browse' )">About</a></li>
+            <li><a class="global-inverted" href="#legal" v-on:click="goToAPage( 'browse' )">Legal</a></li>
           </ul>
         </nav>
       </footer>
+     <!-- //////////////////// -->
     </div>
 
     <script src="./dist/main.js" type="text/javascript"></script>

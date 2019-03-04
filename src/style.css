@@ -355,6 +355,22 @@ footer nav ul li a:hover {
   list-style: none;
 }
 
+.appear-on-hover > :not( .stay-visible ) {
+  opacity: 0;
+}
+
+.appear-on-hover:hover > :not( .stay-visible ) {
+  opacity: 1;
+}
+
+.darken-on-hover {
+  filter: none;
+}
+
+.darken-on-hover:hover {
+  filter: brightness( 50% );
+}
+
 
 /* Animation stuff */
 @keyframes fadein {
