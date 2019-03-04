@@ -5,9 +5,11 @@ var app = new Vue({
   el: '#app',
 
   data: {
+   // page history/navigation data
     pageName: 'browse',
     lastPageNames: [],
 
+   // currently selected article data (for easy referencing by the system in html/VUE)
     article: {
       id: 0,
       image: '',
@@ -20,9 +22,13 @@ var app = new Vue({
       comments: []
     },
 
+   // "database" of authors that can be referenced by the articles
+   // currently filled with an example author (source to the author and her article I used is in the mockup screen I presented for the project)
     authors: [
       {
         id: 0,
+        banner: 'https://images.pexels.com/photos/1455985/pexels-photo-1455985.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        image: 'assets/authorpic.png',
         name: 'Midori Nediger',
         tagline: 'Author and designer',
         about: 'Midori spreads visual communication tricks and tips as design evangelist at Venngage, a web-based infographic design tool.',
@@ -30,6 +36,8 @@ var app = new Vue({
       }
     ],
 
+   // "database" of articles that can be selected and viewed (they can also be editted and stored away so users can go back to it later and find them unchanged)
+   // currently filled with dummy articles for testing
     articles: [
       {
         id: 0,
@@ -154,10 +162,12 @@ var app = new Vue({
       }
     ],
 
+   // string used to temporarily hold user input data for commenting (reset when leaving page or submitting the comment)
     commentText: ''
   },
 
   methods: {
+   // function that likes an article and updates its like status in the "database"
     likeArticle: function( article,event ) {
       article.isLiked = true;
       article.likes++;
@@ -165,6 +175,7 @@ var app = new Vue({
       this.articles[article.id].likes++;
     },
 
+   // function that undoes a like of an article and updates its like status in the "database"
     unlikeArticle: function( article,event ) {
       article.isLiked = false;
       article.likes--;
@@ -172,24 +183,28 @@ var app = new Vue({
       this.articles[article.id].likes--;
     },
 
+   // function that likes a comment on the currently selected article and updates its like status in the "database" for that article
+   // the comment object is being referenced twice by the article reference and the article object in the "database" so editting this once is all that is needed since they point to the same place
     likeComment: function( comment,event ) {
       comment.isLiked = true;
       comment.likes++;
     },
 
+   // function that undoes a like of a comment on the currently selected article and updates its like status in the "database" for that article
+   // the comment object is being referenced twice by the article reference and the article object in the "database" so editting this once is all that is needed since they point to the same place
     unlikeComment: function( comment,event ) {
       comment.isLiked = false;
       comment.likes--;
     },
 
+   // function to add the current user input into a new comment object that is then inserted into the array of other comments for the currently selected article
+   // the user input for commenting is then reset
     processComment: function( event ) {
       if (this.commentText.length > 0) {
+        var temp = this.article.comments.length;
+
         this.article.comments.push( {
-          userName: "Jakob the Snakob",
-          text: this.commentText,
-          likes: 0,
-          isLiked: false
-        } ); this.articles[this.article.id].comments.push( {
+          id: temp,
           userName: "Jakob the Snakob",
           text: this.commentText,
           likes: 0,
@@ -200,6 +215,8 @@ var app = new Vue({
       }
     },
 
+   // homeade naive page history/navigation function that remembers the breadcrumbs of the users navigation so that going back with the back button will actually navigate through the menus
+   // this doesn't currently work however because access to listeners on the back button don't seem to be present in VUE. VUE router is needed instead
     goToAPage: function( page,event ) {
       if (page != this.pageName) {
         this.lastPageNames.push( this.pageName );
@@ -209,6 +226,7 @@ var app = new Vue({
       }
     },
 
+   // same as the above function but it instead works in the opposite direction and doesn't remember the previous page so that the user can keep going back if desired
     goBackAPage: function( event ) {
       if (this.lastPageNames.length > 0) {
         this.pageName = this.lastPageNames.pop();
@@ -219,6 +237,8 @@ var app = new Vue({
       }
     },
 
+   // function that sets the reference data up to point to the selected article
+   // it will also navigate/redirect to the article page to begin viewing
     setArticle: function( result,event ) {
       this.article.id = result.id;
       this.article.image = result.image;
@@ -234,11 +254,15 @@ var app = new Vue({
     }
   },
 
+ // function initiated once the VUE instance becomes active (used for me only to set listeners for special events like navigation)
+ // doesn't really work at the moment however (needs VUE router instead)
   created: function() {
     // WOW this (browser back button support) really won't work? Love it!
     document.addEventListener( "backbutton",this.goBackAPage,false );
   },
 
+ // function called once the VUE instance becomes inactive/destroyed (used for me only to undo listeners for special events like navigation)
+ // doesn't really work at the moment however (needs VUE router instead)
   beforeDestroy: function() {
     document.removeEventListener( "backbutton",this.goBackAPage );
   }

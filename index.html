@@ -121,25 +121,28 @@
      <!-- NOTE: selected author page -->
       <main v-else-if="pageName === 'author'" class="page-author center-x">
         <article class="full-width">
-          <div class="article-image"></div>
+         <!-- author banner image for profile customization -->
+          <div class="article-image" :style="{backgroundImage: 'url(' + authors[article.author].banner + ')'}"></div>
           <div class="gradient-divider full-width"></div>
 
-          <img class="author-pic" src="assets/authorpic.png" alt="Account of Midori Nediger">
-          <h2 class="global-titletext">Midori Nediger</h2>
-          <p class="global-othertext caption-text"><em>Author and designer</em></p>
-          <br>
+         <!-- content and info about the author filled in from the VUE data -->
+          <img class="author-pic" :src="authors[article.author].image" alt="Account of the article creator">
+          <h2 class="global-titletext">{{ authors[article.author].name }}</h2>
+          <p class="global-othertext caption-text"><em>{{ authors[article.author].tagline }}</em></p>
+          <br><p class="global-defaulttext text-block">{{ authors[article.author].about }}</p><br><br>
 
-          <p class="global-defaulttext text-block">Midori spreads visual communication tricks and tips as design evangelist at Venngage, a web-based infographic design tool.</p>
-          <br>
-          <h3 class="global-titletext">More From This Author</h3>
+         <!-- more suggested articles from this author but I couldn't get time to make it work -->
+          <!--<h3 class="global-titletext">More From This Author</h3>-->
         </article>
       </main>
      <!-- /////////////////// -->
 
      <!-- footer including short description of the site and navigation to other important pages -->
       <footer class="full-width center-x center-y">
+       <!-- site description -->
         <p class="global-othertext">The app that lets you take control of the content you want to see whilst exploring the unknown. We provide the tools to find new perspectives, avoid falsehoods, and pop social bubbles. It all starts here.<br><br><em>Copyright ©2019 All News. All rights resereved.</em></p>
 
+       <!-- footer navigation bar for non-essential links (legal, about etc.) -->
         <nav>
           <ul class="horizontal-list">
             <li><a class="global-inverted" href="#home" v-on:click="goToAPage( 'browse' )">Home</a></li>

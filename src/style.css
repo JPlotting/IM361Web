@@ -1,6 +1,6 @@
 
 
-/* Everything */
+/* Everything (general global styles) */
 body {
   margin: 0;
   padding: 0;
@@ -9,7 +9,9 @@ body {
 }
 
 
-/* Fixed header stuff */
+/* NOTE: Fixed header stuff */
+
+/* bounds of header and background styles */
 header {
   width: 100vw;
   height: auto;
@@ -17,52 +19,63 @@ header {
   padding: 20px 0 10px 0;
 }
 
+/* site logo (alignment styles) */
 header .logo {
   float: left;
   margin-right: 100px;
 }
 
+/* site logo (image styles/resize) */
 header .logo img {
   width: 64px;
   height: auto;
 }
 
+/* keep space between elements in the header */
 header nav {
   margin-right: 100px;
 }
 
+/* navigation bar styles (general styles and resets) */
 header .nav-link {
   text-decoration: none;
   font-weight: bold;
   margin-right: 40px;
 }
 
+/* some glowing effects for hovering over navbar items (color palette from original mockup) */
 header .nav-linkA a:hover { color: white; text-shadow: 0 0 20px #5A99FF, 0 0 4px white; }
 header .nav-linkB a:hover { color: white; text-shadow: 0 0 20px #4DDB99, 0 0 4px white; }
 header .nav-linkC a:hover { color: white; text-shadow: 0 0 20px #EF5454, 0 0 4px white; }
 header .nav-linkD a:hover { color: white; text-shadow: 0 0 20px #B354EF, 0 0 4px white; }
 
+/* reset margins of far right navbar element */
 header nav ul li:last-child .nav-link {
   margin-right: 0;
 }
 
+/* user control bar (alignment) */
 header .user-bar {
   float: right;
 }
 
+/* user control bar (notifications styles/resize) */
 header .icon-notes {
   width: 24px;
   height: auto;
   margin-right: 40px;
 }
 
+/* user control bar (account resize) */
 header .user-pic {
   width: 32px;
   height: auto;
 }
 
 
-/* Browse articles page stuff */
+/* NOTE: Browse articles page stuff */
+
+/* the "real" container for the gallery style grid (grid setup) */
 main .basic-grid {
   display: grid;
   grid-template-columns: repeat( 3, auto );
@@ -71,6 +84,7 @@ main .basic-grid {
   align-items: center;
 }
 
+/* container divs for each grid item (resize and hidden overflow for cropping) */
 main .browse-container {
   position: relative;
   padding: 0;
@@ -79,6 +93,7 @@ main .browse-container {
   overflow: hidden;
 }
 
+/* article banner image used inside thumbnail (style/resize/position) */
 main .browse-container img {
   max-width: 100%;
   height: auto;
@@ -88,12 +103,14 @@ main .browse-container img {
   transform: translate( -50%, -50% );
 }
 
+/* article title header for each grid item (position) */
 main .browse-container h2 {
   position: absolute;
   left: 10px;
   bottom: 36px;
 }
 
+/* article author info for each grid item (position) */
 main .browse-container h3 {
   position: absolute;
   left: 10px;
@@ -101,7 +118,9 @@ main .browse-container h3 {
 }
 
 
-/* Article page stuff */
+/* NOTE: Article page stuff */
+
+/* PRIMARY deault styles for the main containers */
 main {
   width: 100vw;
   height: auto;
@@ -110,6 +129,7 @@ main {
   background-color: white;
 }
 
+/* article banner image (styles/resize/position/crop) */
 main .article-image {
   position: relative;
   overflow: hidden;
@@ -120,6 +140,7 @@ main .article-image {
   border-top: 4px solid #111111;
 }
 
+/* vignette effect for banner images (non-responsive) derived from here: https://benjaminhorn.io/code/proper-lens-vignette-with-css/ */
 main .article-image:after {
   content: '';
   position: absolute;
@@ -132,6 +153,7 @@ main .article-image:after {
   border-radius: 50%;
 }
 
+/* gradient color strip dividing the banner from the content (styles/resize) */
 main .gradient-divider {
   height: 20px;
   background-image: linear-gradient( to right, #EF5454, #B354EF );
@@ -140,20 +162,24 @@ main .gradient-divider {
   border-color: #111111;
 }
 
+/* article title (general styles) */
 main article h2 {
   font-size: 32pt;
   margin-top: 80px;
   margin-bottom: 20px;
 }
 
+/* article caption/sub-info text (general styles) */
 main article .caption-text {
   font-size: 18pt;
 }
 
+/* article sub-headings (general styles) */
 main article h3 {
   font-size: 20pt;
 }
 
+/* article actual content text (styles/resize/bounds) */
 main .text-block {
   font-size: 18pt;
   line-height: 28px;
@@ -163,6 +189,7 @@ main .text-block {
   transform: translateX( -50% );
 }
 
+/* article like and share buttons (resize) */
 main .icon-like, main .icon-share {
   width: 72px;
   height: auto;
@@ -170,6 +197,7 @@ main .icon-like, main .icon-share {
   margin-bottom: 32px;
 }
 
+/* article author info box (styles/resize/position/bounds for content inside) */
 main .author-box {
   display: flex;
   height: auto;
@@ -181,72 +209,86 @@ main .author-box {
   padding-bottom: 40px;
 }
 
+/* article author pic inside their info box (resize) */
 main .author-box .user-pic {
   width: 128px;
   height: auto;
 }
 
+/* article author pic inside their info box (alignment/bounding with other items inside) */
 main .author-box .author-pic {
   flex: 1 40%;
   text-align: right;
   transform: translateX( -10% );
 }
 
+/* article author info box item (text content container) */
 main .author-box div {
   flex: 2 60%;
   text-align: left;
 }
 
+/* article author info box item (author name general styles) */
 main .author-box h4 {
   max-width: 600px;
   font-size: 18pt;
   margin-bottom: 0;
 }
 
+/* article author info box item (about author general styles/spacing) */
 main .author-box p {
   max-width: 600px;
   line-height: 24px;
   font-size: 14pt;
 }
 
+/* article author info box item ("read more" button style reset) */
 main .author-box div a {
   text-decoration: none;
   font-weight: bold;
 }
 
+/* article author info box item ("read more" button glow on hover) */
 main .author-box div a:hover {
   text-shadow: 0 0 4px white;
 }
 
+/* article comment box container */
 main .comments-box {
   margin-top: 40px;
   margin-bottom: 40px;
 }
 
+/* commentor user pic (resize) */
 main .comments-box .user-pic {
   width: 32px;
   height: auto;
   margin-right: 20px;
 }
 
+/* spacing between horizontal items in each comment */
 main .comments-box h4, main .comments-box p {
   margin-right: 20px;
 }
 
+/* space comments from top content */
 main .comments-box .comment-box {
   margin-top: 40px;
 }
 
+/* like button for each comment (resize) */
 main .comments-box .icon-comment-like {
   width: 32px;
   height: auto;
 }
 
+/* controlling max size of user input for comment section */
 main .comments-box .comment-input {
   width: 40em;
   height: auto;
 }
 
+/* more controlling max size of user input for comment section */
 main .comments-box .comment-text {
   width: auto;
   max-width: 40em;
@@ -255,7 +297,9 @@ main .comments-box .comment-text {
 }
 
 
-/* Author page stuff */
+/* NOTE: Author page stuff */
+
+/* general styles for profile pic of the author (resize/position/offset) */
 .page-author .author-pic {
   max-width: 400px;
   height: auto;
@@ -264,12 +308,15 @@ main .comments-box .comment-text {
   margin-bottom: 0;
 }
 
+/* space author name away from profile pic */
 .page-author h2 {
   margin-top: 150px;
 }
 
 
-/* Fixed footer stuff */
+/* NOTE: Fixed footer stuff */
+
+/* main footer styles (resize) */
 footer {
   width: 100vw;
   height: 200px;
@@ -277,6 +324,7 @@ footer {
   padding: 10px 0;
 }
 
+/* site about description (bound/align to left) */
 footer p {
   max-width: 500px;
   flex: 1 80%;
@@ -284,23 +332,28 @@ footer p {
   margin-left: 625px;
 }
 
+/* non-essential navbar (bound/align to right) */
 footer nav {
   width: 200px;
   flex: 2 20%;
   text-align: left;
 }
 
+/* reset styles of items in non-essential navbar */
 footer nav ul li a {
   text-decoration: none;
   font-weight: bold;
 }
 
+/* glow when hovering over items in non-essential navbar */
 footer nav ul li a:hover {
   text-shadow: 0 0 4px white;
 }
 
 
-/* Reusable stuff */
+/* NOTE: Reusable tags */
+
+/* general color styles that can be applied anywhere and changed here to effect the colors over the whole site */
 .global-defaulttext { color: grey; } /*grey*/
 .global-titletext { color: #290C0C; } /*dark color*/
 .global-othertext { color: lightgrey; } /*light grey*/
@@ -310,6 +363,8 @@ footer nav ul li a:hover {
 .global-highlightC { color: #EF5454; } /*red*/
 .global-highlightD { color: #B354EF; } /*purple*/
 
+/* a common method of fixing the problems (not auto sizing properly) that arise from a container with all (or at least just ending with) floating elements */
+/* mainly for header (fix found here: https://www.w3schools.com/howto/howto_css_clearfix.asp) */
 .clearfix:after {
   content: "";
   visibility: hidden;
@@ -318,25 +373,31 @@ footer nav ul li a:hover {
   clear: both;
 }
 
+/* tag that sets the size of the element to full width (width of screen) */
+/* it will also set the flex size/percentage to full */
 .full-width {
   width: 100%;
   flex: 1 100%;
 }
 
+/* tag that makes all the list elements of a list (unordered) become horizontal */
 .horizontal-list li {
   display: inline-block;
   margin-left: 0;
   margin-right: 10px;
 }
 
+/* removes the extra margins on the end as a result of the above styles */
 .horizontal-list li:last-child {
   margin-right: 0;
 }
 
+/* makes a single item behave as a horizontally aligned item */
 .horizontal-item {
   display: inline-block;
 }
 
+/* centers an item horizontally */
 .center-x {
   display: flex;
   flex-wrap: wrap;
@@ -344,6 +405,7 @@ footer nav ul li a:hover {
   text-align: center;
 }
 
+/* centers an item vertically */
 .center-y {
   display: flex;
   flex-wrap: wrap;
@@ -351,40 +413,56 @@ footer nav ul li a:hover {
   vertical-align: middle;
 }
 
+/* removes the default styles for a list that is being filled in by VUE */
 .array-list {
   list-style: none;
 }
 
+/* makes all items childed to a parent with this tag (except for those with "stay-visible") become invisible when not hover on the parent */
 .appear-on-hover > :not( .stay-visible ) {
   opacity: 0;
 }
 
+/* makes all items childed to a parent with this tag (except for those with "stay-visible") become visible when hover on the parent */
 .appear-on-hover:hover > :not( .stay-visible ) {
   opacity: 1;
 }
 
-.darken-on-hover {
-  filter: none;
-}
-
+/* darken an item when hovering over it */
 .darken-on-hover:hover {
   filter: brightness( 50% );
 }
 
+/* filter reset during not hovering */
+.darken-on-hover {
+  filter: none;
+}
 
-/* Animation stuff */
+
+/* NOTE: Animation stuff */
+
+/* tweening for a fade transition animation */
 @keyframes fadein {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-.fadein {}
+/* fade transition animation tag */
+/* meant for fading in and out between pages but I never actually got it in */
+.fadein {
+  animation-name: fadein;
+  animation-duration: 0.25s;
+  animation-direction: alternate;
+  animation-iteration-count: 2;
+}
 
+/* tweening for my "bow" animation */
 @keyframes animbow {
   from { transform: rotate( 0deg ) scale( 1 ); }
   to { transform: rotate( 45deg ) scale( 1.5 ); }
 }
 
+/* tag for applying my "bow" animation on hover */
 .anim-bow:hover {
   animation-name: animbow;
   animation-duration: 0.25s;
